@@ -1,0 +1,107 @@
+.skills-section {
+  background: linear-gradient(180deg, transparent, var(--color-surface) 30%, var(--color-surface) 70%, transparent);
+}
+
+.skills-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.skills-header .section-label {
+  justify-content: center;
+}
+
+.skills-header .section-label::before {
+  display: none;
+}
+
+.skills-header .section-subtitle {
+  margin: 0 auto;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.skills-grid.visible {
+  opacity: 1;
+}
+
+.skill-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease, border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.skills-grid.visible .skill-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  transition: opacity var(--transition-base);
+  opacity: 0.6;
+}
+
+.skill-card--blue::before { background: linear-gradient(90deg, var(--color-primary), transparent); }
+.skill-card--orange::before { background: linear-gradient(90deg, var(--color-accent), transparent); }
+.skill-card--green::before { background: linear-gradient(90deg, var(--color-success), transparent); }
+.skill-card--pink::before { background: linear-gradient(90deg, #f472b6, transparent); }
+
+.skill-card:hover {
+  border-color: var(--color-border-hover);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-3px);
+}
+
+.skill-card-title {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 20px;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-tag {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 5px 12px;
+  border-radius: 100px;
+  transition: color var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.skill-card:hover .skill-tag {
+  color: var(--color-text-primary);
+  border-color: var(--color-border-hover);
+}
+
+@media (max-width: 640px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
